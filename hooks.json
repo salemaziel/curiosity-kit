@@ -1,0 +1,16 @@
+{
+  "loopkit": {
+    "SessionStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/skills/loopkit/scripts/loopkit_hook.py\" session-start --host antigravity",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

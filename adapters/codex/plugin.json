@@ -3,6 +3,8 @@
   "version": "0.1.1",
   "description": "Curiosity Kit, the ever-curious: independent domain skills, each with its own playbooks, references and tools.",
   "author": {"name": "Curiosity Kit contributors"},
+  "homepage": "https://github.com/salemaziel/curiosity-kit",
+  "repository": "https://github.com/salemaziel/curiosity-kit",
   "keywords": ["harness", "skills", "personal"],
   "skills": "./skills/",
   "interface": {

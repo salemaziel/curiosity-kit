@@ -2,7 +2,7 @@
 
 *Independent skills for curious people.*
 
-**[Download for ChatGPT](https://raw.githubusercontent.com/Israelmusondaayliffe/curiosity-kit/main/downloads/curiosity-kit-chatgpt.zip)** · [Upload and install](#chatgpt-web)
+**[Download for ChatGPT](https://raw.githubusercontent.com/salemaziel/curiosity-kit/main/downloads/curiosity-kit-chatgpt.zip)** · [Upload and install](#chatgpt-web)
 
 Curiosity Kit is a plugin for Antigravity CLI (agy), Codex and Claude Code. It brings together 26 independent skills for researching, writing, making decisions, building software, producing creative work and finishing multi-step projects.
 
@@ -14,7 +14,7 @@ Start with Chief of Staff when you want help choosing an approach. Go straight t
 
 ### ChatGPT (web)
 
-1. Click **[Download for ChatGPT](https://raw.githubusercontent.com/Israelmusondaayliffe/curiosity-kit/main/downloads/curiosity-kit-chatgpt.zip)** and save the ZIP file. Keep it zipped.
+1. Click **[Download for ChatGPT](https://raw.githubusercontent.com/salemaziel/curiosity-kit/main/downloads/curiosity-kit-chatgpt.zip)** and save the ZIP file. Keep it zipped.
 2. On ChatGPT web, open **Plugins > Add > Upload plugin/archive**, when that option is available. Eligible workspace owners and administrators can use **Admin console > select workspace > Plugins > Add > Upload plugin**.
 3. Choose `curiosity-kit-chatgpt.zip`, review the plugin, and select **Install** when shown.
 4. Open a fresh chat, select **Curiosity Kit**, then choose **Chief of Staff** and describe what you want to do.
@@ -210,6 +210,10 @@ python3 -B build/package.py --out build/out
 ```
 
 The builder validates both combined packages and each standalone skill. It does not install anything. Committed `plugins/` payloads must match the build. See [contributor notes](AGENTS.md) and [readiness](READINESS.md).
+
+## Upstream and attribution
+
+This repository is maintained at [salemaziel/curiosity-kit](https://github.com/salemaziel/curiosity-kit). Upstream source contributions originate from [Israelmusondaayliffe/curiosity-kit](https://github.com/Israelmusondaayliffe/curiosity-kit). See [LICENSING.md](LICENSING.md) for detailed attribution and third-party terms.
 
 ## Credits and licenses
 

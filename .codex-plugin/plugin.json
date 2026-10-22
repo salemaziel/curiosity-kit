@@ -1,0 +1,31 @@
+{
+  "name": "curiosity-kit",
+  "version": "0.1.1",
+  "description": "Curiosity Kit, the ever-curious: independent domain skills, each with its own playbooks, references and tools.",
+  "author": {
+    "name": "Curiosity Kit contributors"
+  },
+  "homepage": "https://github.com/salemaziel/curiosity-kit",
+  "repository": "https://github.com/salemaziel/curiosity-kit",
+  "keywords": [
+    "harness",
+    "skills",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Curiosity Kit",
+    "shortDescription": "the ever-curious",
+    "longDescription": "Curiosity Kit provides 26 independent skills for research, writing, decisions, software, creative work and multi-step projects. Start with Chief of Staff to choose an approach, or select a specialist directly. Available tools, permissions and host support determine which workflows can run.",
+    "developerName": "Curiosity Kit contributors",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Audit my Codex harness.",
+      "Check this skill folder for problems."
+    ]
+  }
+}
