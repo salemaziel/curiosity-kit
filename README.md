@@ -8,7 +8,9 @@ Curiosity Kit is a plugin for Antigravity CLI (agy), Codex and Claude Code. It b
 
 Start with Chief of Staff when you want help choosing an approach. Go straight to a specialist when you know what you need. Each skill includes its own methods and supporting files, so using one doesn't require running the others first.
 
-[Install](#install) · [First task](#your-first-task) · [Skills](#the-26-skills) · [Requirements and limits](#requirements-and-limits) · [Troubleshooting](#troubleshooting)
+See **[HOW_TO_USE.md](HOW_TO_USE.md)** for a guide on which projects Curiosity Kit is built for, ecosystem comparisons, and end-to-end workflows.
+
+[When to use](HOW_TO_USE.md) · [Install](#install) · [First task](#your-first-task) · [Skills](#the-26-skills) · [Requirements and limits](#requirements-and-limits) · [Troubleshooting](#troubleshooting)
 
 ## Install
 
