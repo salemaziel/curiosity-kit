@@ -25,7 +25,7 @@ from hecore.common import sha256_file, write_json  # noqa: E402
 from hecore.packaging import check_plugin  # noqa: E402
 
 IGNORE = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store", ".pytest_cache")
-HOSTS = {"claude-code": ".claude-plugin", "codex": ".codex-plugin"}
+HOSTS = {"claude-code": ".claude-plugin", "codex": ".codex-plugin", "antigravity": ""}
 
 
 def source_provenance(repo: Path) -> tuple[str | None, bool | None]:
@@ -66,8 +66,15 @@ def emit(host: str, target: Path, skills: list[str], name: str | None = None) ->
     if name:
         manifest["name"] = name
         manifest["description"] = f"Isolation test package containing only {skills[0]}."
-    write_json(target / HOSTS[host] / "plugin.json", manifest)
-    shutil.copyfile(REPO / "LICENSE", target / "LICENSE")
+    manifest_dir = target / HOSTS[host] if HOSTS[host] else target
+    manifest_dir.mkdir(parents=True, exist_ok=True)
+    write_json(manifest_dir / "plugin.json", manifest)
+    ext_manifest = REPO / "adapters" / host / "gemini-extension.json"
+    if ext_manifest.is_file():
+        shutil.copyfile(ext_manifest, target / "gemini-extension.json")
+    for legal_name in ("LICENSE", "LICENSING.md"):
+        if (REPO / legal_name).is_file():
+            shutil.copyfile(REPO / legal_name, target / legal_name)
     metadata = json.loads((REPO / "adapters" / "codex" / "skill-metadata.json").read_text(encoding="utf-8"))
     for skill in skills:
         shutil.copytree(REPO / "skills" / skill, target / "skills" / skill, ignore=IGNORE)
@@ -102,6 +109,8 @@ def emit(host: str, target: Path, skills: list[str], name: str | None = None) ->
             if "hooks" in manifest:
                 raise SystemExit("Default hooks/hooks.json and explicit manifest hooks cannot both be emitted")
             write_json(target / "hooks" / "hooks.json", {"hooks": events})
+            if host == "antigravity":
+                write_json(target / "hooks.json", {"hooks": events})
 
 
 def main() -> int:

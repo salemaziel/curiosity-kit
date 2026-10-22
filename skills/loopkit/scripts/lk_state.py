@@ -147,7 +147,7 @@ def validate(c):
     need(isinstance(c, dict) and c.get("schema") == 1, "contract-invalid", "Expected schema 1 object")
     for key in ("title", "outcome", "authority"):
         need(nonempty(c.get(key)), "contract-invalid", key + " is required")
-    need(c.get("host") in ("codex", "claude-code"), "contract-invalid", "Choose the actual target host")
+    need(c.get("host") in ("codex", "claude-code", "antigravity"), "contract-invalid", "Choose the actual target host")
     for key in ("allowed_paths", "forbidden_paths", "external_actions", "artifacts"):
         need(isinstance(c.get(key), list) and all(nonempty(x) for x in c[key]),
              "contract-invalid", key + " must be a string list")

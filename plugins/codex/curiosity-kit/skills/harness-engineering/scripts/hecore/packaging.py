@@ -119,10 +119,14 @@ def _component_paths(manifest: dict[str, Any], key: str) -> list[str]:
 def check_plugin(plugin_dir: Path, host: str) -> dict[str, Any]:
     plugin_dir = Path(plugin_dir)
     errors: list[str] = []
-    folder = ".claude-plugin" if host == "claude-code" else ".codex-plugin"
-    manifest_path = plugin_dir / folder / "plugin.json"
+    if host == "claude-code":
+        manifest_path = plugin_dir / ".claude-plugin" / "plugin.json"
+    elif host == "codex":
+        manifest_path = plugin_dir / ".codex-plugin" / "plugin.json"
+    else:
+        manifest_path = plugin_dir / "plugin.json"
     if not manifest_path.is_file():
-        return {"plugin": str(plugin_dir), "host": host, "ok": False, "errors": [f"{folder}/plugin.json missing"], "skills": []}
+        return {"plugin": str(plugin_dir), "host": host, "ok": False, "errors": [f"{manifest_path.name} missing"], "skills": []}
     try:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
@@ -152,12 +156,12 @@ def check_plugin(plugin_dir: Path, host: str) -> dict[str, Any]:
             errors.extend(f"{result['skill']}: {e}" for e in result["errors"])
     if not skills:
         errors.append("plugin contains no skills")
-    hooks_file = plugin_dir / "hooks" / "hooks.json"
+    hooks_file = plugin_dir / "hooks.json" if (plugin_dir / "hooks.json").is_file() else plugin_dir / "hooks" / "hooks.json"
     if hooks_file.is_file():
         try:
             json.loads(hooks_file.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
-            errors.append(f"hooks/hooks.json: {exc}")
+            errors.append(f"{hooks_file.name}: {exc}")
     return {"plugin": name, "version": version, "host": host, "ok": not errors, "errors": errors, "skills": skills}
 
 

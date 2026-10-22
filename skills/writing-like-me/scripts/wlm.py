@@ -299,7 +299,7 @@ def punctuation(args):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__); sub = p.add_subparsers(dest='command', required=True)
-    d = sub.add_parser('discover'); d.add_argument('--host', required=True, choices=['codex', 'claude-code']); d.add_argument('--workspace', required=True); d.add_argument('--home')
+    d = sub.add_parser('discover'); d.add_argument('--host', required=True, choices=['codex', 'claude-code', 'antigravity']); d.add_argument('--workspace', required=True); d.add_argument('--home')
     i = sub.add_parser('init'); i.add_argument('--home', required=True); i.add_argument('--add-missing', action='store_true'); i.add_argument('--confirmed', action='store_true')
     g = sub.add_parser('guide'); g.add_argument('--home', required=True); g.add_argument('--guide', choices=['VOICE.md', 'STYLE.md'], required=True); g.add_argument('--proposed', required=True); g.add_argument('--expected-sha256'); g.add_argument('--confirmed', action='store_true')
     v = sub.add_parser('protect'); v.add_argument('before'); v.add_argument('after'); v.add_argument('--exact', action='append', default=[])

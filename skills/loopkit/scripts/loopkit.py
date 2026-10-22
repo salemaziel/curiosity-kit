@@ -7,7 +7,7 @@ from pathlib import Path
 from lk_state import Fault, need, read_json, validate, initialize, load, locked, atomic, encoded, artifacts, nonempty
 from lk_run import execute, finish, review, pause, resume, reconcile, reopen, check_unit, TERMINAL
 from lk_schedule import prepare, observe
-from lk_binding import bind, unbind
+from lk_binding import bind, unbind, resolve
 
 
 def summary(s):
@@ -76,9 +76,13 @@ def main():
     i = sub.add_parser("init"); i.add_argument("contract"); i.add_argument("--run", required=True); i.add_argument("--workspace", required=True)
     for command in ("bind", "unbind"):
         q = sub.add_parser(command); q.add_argument("run"); q.add_argument("--workspace", required=True)
-        q.add_argument("--host", required=True, choices=["codex", "claude-code"]); q.add_argument("--state-root", default=None)
+        q.add_argument("--host", required=True, choices=["codex", "claude-code", "antigravity"]); q.add_argument("--state-root", default=None)
         if command == "bind":
             q.add_argument("--replace-run", default=None)
+    q = sub.add_parser("selected", help="read the exact nonterminal workspace selection; no execution")
+    q.add_argument("--workspace", required=True)
+    q.add_argument("--host", required=True, choices=["codex", "claude-code", "antigravity"])
+    q.add_argument("--state-root", default=None)
     for command in ("status", "doctor", "checkpoint"):
         q = sub.add_parser(command); q.add_argument("run")
     for command in ("run-unit", "check", "finish", "review", "stop", "resume", "reconcile", "reopen",
@@ -104,6 +108,9 @@ def main():
             out = bind(args.run, args.workspace, args.host, args.state_root, args.replace_run)
         elif c == "unbind":
             out = unbind(args.run, args.workspace, args.host, args.state_root)
+        elif c == "selected":
+            selected = resolve(args.workspace, args.host, args.state_root)
+            out = {"host": args.host, "run": str(selected) if selected else None}
         elif c == "validate":
             validate(read_json(args.contract)); out = {"valid": True}
         elif c == "init":

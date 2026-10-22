@@ -13,13 +13,15 @@ def canonical(path):
 
 
 def state_root(host, supplied=None):
-    need(host in {"codex", "claude-code"}, "binding-host", "Unknown host")
+    need(host in {"codex", "claude-code", "antigravity"}, "binding-host", "Unknown host")
     selected = supplied if supplied is not None else os.environ.get("LOOPKIT_STATE_ROOT")
     if selected is not None:
         need(bool(str(selected).strip()), "binding-root", "State root cannot be empty")
         return canonical(selected)
     if host == "codex":
         return canonical(Path(os.environ.get("CODEX_HOME") or (Path.home() / ".codex")) / "loopkit")
+    if host == "antigravity":
+        return canonical(Path(os.environ.get("GEMINI_CONFIG_DIR") or (Path.home() / ".gemini")) / "loopkit")
     return canonical(Path(os.environ.get("CLAUDE_CONFIG_DIR") or (Path.home() / ".claude")) / "loopkit")
 
 

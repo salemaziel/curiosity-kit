@@ -4,7 +4,7 @@
 
 **[Download for ChatGPT](https://raw.githubusercontent.com/Israelmusondaayliffe/curiosity-kit/main/downloads/curiosity-kit-chatgpt.zip)** · [Upload and install](#chatgpt-web)
 
-Curiosity Kit is a plugin for Codex and Claude Code. It brings together 26 independent skills for researching, writing, making decisions, building software, producing creative work and finishing multi-step projects.
+Curiosity Kit is a plugin for Antigravity CLI (agy), Codex and Claude Code. It brings together 26 independent skills for researching, writing, making decisions, building software, producing creative work and finishing multi-step projects.
 
 Start with Chief of Staff when you want help choosing an approach. Go straight to a specialist when you know what you need. Each skill includes its own methods and supporting files, so using one doesn't require running the others first.
 
@@ -25,9 +25,20 @@ Use the ZIP linked above. GitHub's whole-repository **Download ZIP** and attachi
 
 This package has been checked for structure, resources and archive integrity. This exact public Curiosity Kit archive has **not yet been natively installed in ChatGPT**. All 26 skills and existing hooks are included; native hooks are unsupported in ChatGPT Cloud and will not provide local hook behavior there. Other workflows still depend on the tools and permissions available in your host. Read [Data handling](#data-handling) and [Cloud and hooks](#cloud-and-hooks) before use.
 
-### Codex and Claude Code
+### Antigravity CLI (agy), Codex, and Claude Code
 
-Clone or download this repository, open a terminal in its root directory, and run the two commands for your host. Use an existing Codex or Claude Code installation. For a published Git marketplace, its repository URL can replace `.`.
+Clone or download this repository, open a terminal in its root directory, and run the commands for your host.
+
+### Antigravity CLI (agy)
+
+Link or copy the built native Antigravity plugin package into your global plugins directory:
+
+```sh
+ln -s "$(pwd)/plugins/antigravity/curiosity-kit" ~/.gemini/config/plugins/curiosity-kit
+agyplugins enable curiosity-kit
+```
+
+Or copy the folder into your project's `.agents/plugins/curiosity-kit` for workspace-scoped use.
 
 ### Codex
 
@@ -46,6 +57,8 @@ claude plugin install curiosity-kit@curiosity-kit
 After installation, check the plugin list and open a fresh session.
 
 ```sh
+agyplugins list | grep curiosity-kit
+# or
 codex plugin list
 # or
 claude plugin list

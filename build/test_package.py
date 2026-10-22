@@ -89,7 +89,7 @@ class PackageGateTests(unittest.TestCase):
                      patch("sys.argv", ["package.py", "--out", str(out)]), patch("builtins.print"):
                     self.assertEqual(package.main(), expected)
                 report = json.loads((out / "build-manifest.json").read_text())
-                self.assertEqual(len(report["packages"]), 4)
+                self.assertEqual(len(report["packages"]), len(package.HOSTS) * 2)
                 self.assertEqual({p["host"] for p in report["packages"]}, set(package.HOSTS))
                 self.assertTrue(all(p["ok"] == (expected == 0) for p in report["packages"]))
 
